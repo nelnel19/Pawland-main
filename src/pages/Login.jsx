@@ -50,11 +50,11 @@ function Login() {
     try {
       const response = await API.post("/auth/login", form);
 
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("role", response.data.user.role);
+      sessionStorage.setItem("token", response.data.token);
+      sessionStorage.setItem("role", response.data.user.role);
 
       if (response.data.user.role === "Admin") {
-        navigate("/admin/reports", { replace: true });
+        navigate("/admin/dashboard", { replace: true });
       } else {
         navigate("/dashboard", { replace: true });
       }
@@ -73,11 +73,11 @@ function Login() {
         credential: credentialResponse.credential,
       });
 
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("role", response.data.user.role);
+      sessionStorage.setItem("token", response.data.token);
+      sessionStorage.setItem("role", response.data.user.role);
 
       if (response.data.user.role === "Admin") {
-        navigate("/admin/reports", { replace: true });
+        navigate("/admin/dashboard", { replace: true });
       } else {
         navigate("/dashboard", { replace: true });
       }

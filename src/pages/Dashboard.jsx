@@ -39,7 +39,7 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   useEffect(() => {
     if (!token) {
@@ -54,8 +54,8 @@ function Dashboard() {
         setUser(response.data.user);
       } catch (err) {
         if (err.response?.status === 401) {
-          localStorage.removeItem("token");
-          localStorage.removeItem("role");
+          sessionStorage.removeItem("token");
+          sessionStorage.removeItem("role");
           navigate("/login", { replace: true });
         } else {
           setError(
@@ -71,8 +71,8 @@ function Dashboard() {
   }, [navigate, token]);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("role");
     navigate("/login", { replace: true });
   };
 
