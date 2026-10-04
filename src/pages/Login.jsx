@@ -50,8 +50,8 @@ function Login() {
     try {
       const response = await API.post("/auth/login", form);
 
-      sessionStorage.setItem("token", response.data.token);
-      sessionStorage.setItem("role", response.data.user.role);
+     localStorage.setItem("token", response.data.token);
+     localStorage.setItem("role", response.data.user.role);
 
       if (response.data.user.role === "Admin") {
         navigate("/admin/dashboard", { replace: true });

@@ -76,7 +76,13 @@ function Register() {
       });
 
       localStorage.setItem("token", response.data.token);
-      navigate("/dashboard");
+      localStorage.setItem("role", response.data.user.role);
+
+      if (response.data.user.role === "Admin") {
+        navigate("/admin/dashboard", { replace: true });
+      } else {
+        navigate("/dashboard", { replace: true });
+      }
     } catch (err) {
       setError(err.response?.data?.message || "Google registration failed.");
     }
